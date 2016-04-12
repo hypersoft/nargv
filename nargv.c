@@ -159,7 +159,8 @@ NARGV *nargv_parse(char *input) {
 
     }
 
-    nvp->argv = calloc(nvp->argc, sizeof(char *));
+    // +1 for extra NULL pointer required by execv() and friends
+    nvp->argv = calloc(nvp->argc + 1, sizeof(char *));
     nvp->data = calloc(nvp->data_length, 1);
 
     // SECOND PASS
