@@ -18,7 +18,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-char *NARGV_IFS = " \t\n";
+const char *NARGV_IFS = " \t\n";
 
 typedef struct NARGV {
     char **argv, *data, *error_message;
@@ -30,7 +30,7 @@ void nargv_free(NARGV* props) {
     free(props);
 }
 
-void nargv_ifs(char *nifs) {
+void nargv_ifs(const char *nifs) {
     if (! nifs) {
         NARGV_IFS = " \t\n";    
     } else {
@@ -39,7 +39,7 @@ void nargv_ifs(char *nifs) {
 }
 
 int nargv_field_seperator(char seperator) {
-    char *list = NARGV_IFS;
+    const char *list = NARGV_IFS;
     if (seperator) {
         while (*list) {
             if (*list++ == seperator) return 1;
@@ -49,7 +49,7 @@ int nargv_field_seperator(char seperator) {
     return 1; // null is always a field seperator
 }
 
-NARGV *nargv_parse(char *input) {
+NARGV *nargv_parse(const char *input) {
 
     NARGV *nvp = calloc(1, sizeof(NARGV));
 
