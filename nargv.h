@@ -6,5 +6,5 @@ typedef struct NARGV {
 } NARGV;
 
 void nargv_free(NARGV* props);
-void nargv_ifs(char *nifs);
-NARGV *nargv_parse(char *input);
+void nargv_ifs(const char *nifs);
+NARGV *nargv_parse(const char *input);
